@@ -71,19 +71,20 @@
 
   /* Função que adiciona scripts no body */
   function addScriptForJson(){
-
     /* Este comando cria um script que vai receber a função accessJson e adiciona-o no body */
     var scriptForJson = document.createElement('script');
     var my_accessJsonFunction = document.createTextNode(accessJson);
     scriptForJson.appendChild(my_accessJsonFunction);
-    document.body.appendChild(scriptForJson);
+    document.body.appendChild(scriptForJson); // teremos o script <script>accessJson(objetoJson);</script> no body
 
     /* Este comando cria o script que vai realizar o request ao site viacep */
     var script = document.createElement('script');
     var url = "https://viacep.com.br/ws/[CEP]/json/?callback=accessJson";
     var cepInformado = $cep.value.match(regex).join(''); // match para pegar somente numeros
     script.src = url.replace('[CEP]', cepInformado);
-    document.body.appendChild(script);
+    document.body.appendChild(script); 
+    /* teremos o script <script src="https://viacep.com.br/ws/[CEP]/json/?callback=accessJson">
+    </script> no body */
   }
 
 })(window, document);
